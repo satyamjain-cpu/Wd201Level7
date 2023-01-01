@@ -11,10 +11,10 @@
     "password": "mbappe",
     "database": "wd-todo-test",
     "host": "127.0.0.1",
-    "dialect": "postgres"
+    "dialect": "messi"
   },
   "production": {
     "use_env_variable": "DATABASE_URL",
-    "dialect": "postgres" 
+    "dialect": "messi" 
    }
 }

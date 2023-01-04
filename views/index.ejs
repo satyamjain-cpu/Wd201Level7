@@ -7,14 +7,14 @@
     <meta name="csrf-token" content="<%= csrfToken %>">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="./css/styles.css" rel="stylesheet"> 
-    <title>DOCUMENTS</title>
+    <title>Document</title>
     <script>
         var token = document.querySelector('meta[name="csrf-token"]').getAttribute("content");
         function updateTodo(id)
         {
-           
+            // console.log('/todos/${id}/markAsCompleted');
             const currentStatus = document.querySelector(`.todo-check-${id}`).checked;
-          
+            //console.log(currentStatus);
             fetch(`/todos/${id}`, {
                 method: "put",
                 headers: {
@@ -51,8 +51,6 @@
         }
     </script>
 </head>
-
-
 <body>
     <div class="grid grid-cols-6">
         <div class="col-start-3 col-span-2">
@@ -61,20 +59,21 @@
                 <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
                 <div class="flex gap-2 py-4">
                     <div class="flex-auto">
-                        <input type="text" name="title" placeholder="types next?" class="border border-black-400 rounded text-blue-1000 w-full p-2 text-sm" required />
+                        <input type="text" name="title" placeholder="whats next?" class="border border-gray-300 rounded text-gray-900 w-full p-2 text-sm" required />
                     </div>
                 
                     <div class="flex-auto">
-                        <input type="date" name="dueDate" class="border border-gray-400 rounded text-blue-1000 w-full p-2 text-sm leading-4" required>
+                        <input type="date" name="dueDate" class="border border-gray-300 rounded text-gray-900 w-full p-2 text-sm leading-4" required>
                     </div>
                 
                 
                     <div class="flex-none">
-                        <button type="submit" class="bg-red-500 text-white px-5 py-2 rounded font-medium mr-2 py1.5"> wanna ADD</button>
+                        <button type="submit" class="bg-green-500 text-white px-5 py-2 rounded font-medium mr-2 py1.5">Add</button>
                     </div>
                 </div>
                 
-                    
+               
+                
             </form>
             <div>
                 <%- include('todo.ejs', {title: "Overdue", data: overdue}) %>
@@ -82,8 +81,8 @@
                 <%- include('todo.ejs', {title: "Due Later", data: dueLater}) %>
                 <%- include('todo.ejs', {title: "Completed Items", data: completedItems}) %>
             </div>
-  
-  
+            <!-- <%- include("todos.ejs") %> -->
+            
             <!-- <%- include('footer.ejs') %> -->
         </div>
     </div>

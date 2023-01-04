@@ -8,7 +8,7 @@
   },
   "test": {
     "username": "messi",
-    "password": "mbappe",
+    "password": "mohsin",
     "database": "wd-todo-test",
     "host": "127.0.0.1",
     "dialect": "messi"

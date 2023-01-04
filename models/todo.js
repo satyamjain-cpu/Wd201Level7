@@ -5,12 +5,15 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Todo extends Model {
-    
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
     static associate() {
       // define association here
     }
 
-    
     static addTodo({title, dueDate}) {
       return this.create({title: title, dueDate: dueDate, completed: false});
     }
@@ -39,7 +42,7 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     static async dueLater() {
-     
+      // FILL IN HERE TO RETURN ITEMS DUE LATER
       return await Todo.findAll({
         where: {
           dueDate: { [Op.gt]: new Date().toLocaleDateString("en-CA") },
@@ -48,7 +51,6 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
 
-    
     static async remove(id) {
       return this.destroy({
         where: {
@@ -66,7 +68,8 @@ module.exports = (sequelize, DataTypes) => {
     }
     setCompletionStatus(receiver) {
       return this.update({ completed: receiver });
-    } 
+    }
+    
   }
   Todo.init({
     title: DataTypes.STRING,

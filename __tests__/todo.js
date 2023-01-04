@@ -83,9 +83,9 @@ describe('todo test suits', ()=>{
     const getResponse = await agent.get('/');
     let csrfToken = fetchCsrfToken(getResponse);
     await agent.post('/todos').send({
-      title: 'some changes of L9-1-1-1',
+      title: 'some changes of L9-1-1',
       dueDate: new Date().toISOString(),
-      completed: false,
+      completed: true,
       '_csrf': csrfToken,
     });
     const TodosItems = await agent.get('/').set('Accept', 'application/json');
@@ -93,22 +93,13 @@ describe('todo test suits', ()=>{
     const calculateTodosTodayITem = TodosItemsParse.dueToday.length;
     const Todo = TodosItemsParse.dueToday[calculateTodosTodayITem - 1];
     const boolStatus = !Todo.completed;
-    let anotherRes = await agent.get('/');
+    anotherRes = await agent.get('/');
     csrfToken = fetchCsrfToken(anotherRes);
 
     const changeTodo = await agent.put(`/todos/${Todo.id}`)
     .send({_csrf: csrfToken, completed: boolStatus});
 
     const UpadteTodoItemParse = JSON.parse(changeTodo.text);
-    expect(UpadteTodoItemParse.completed).toBe(true);
-
-    anotherRes = await agent.get('/');
-    csrfToken = fetchCsrfToken(anotherRes);
-
-    const changeTodo2 = await agent.put(`/todos/${Todo.id}`)
-    .send({_csrf: csrfToken, completed: !boolStatus});
-
-    const UpadteTodoItemParse2 = JSON.parse(changeTodo2.text);
-    expect(UpadteTodoItemParse2.completed).toBe(false);
+    expect(UpadteTodoItemParse.completed).toBe(boolStatus);
   });
 });

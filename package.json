@@ -1,5 +1,5 @@
 {
-  "name": "messi",
+  "name": "satyam",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -16,7 +16,7 @@
       "prettier --write ."
     ]
   },
-  "author": "Satyam Jain <satyam.202104119@tulas.edu.in>",
+  "author": "satyam jain <satyam.202104119@tulas.edu.in>",
   "license": "ISC",
   "dependencies": {
     "cookie-parser": "^1.4.6",
